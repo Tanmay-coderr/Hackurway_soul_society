@@ -1,55 +1,34 @@
-import User from "../models/User.js";
-import jwt from "jsonwebtoken";
+// authController.js
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "./firebase.js";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
-const generateToken = (userId) => {
-  return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
-    expiresIn: "7d"
-  });
-};
-
-export const register = async (req, res) => {
-  const { username, firstname, lastname, email, phone, password } = req.body;
-
+export const signupUser = async (req, res) => {
+  const { email, password, name } = req.body;
   try {
-    const existingUser = await User.findOne({ email });
-    if (existingUser)
-      return res.status(400).json({ message: "User already exists" });
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
 
-    const user = await User.create({
-      username,
-      firstname,
-      lastname,
-      email,
-      phone,
-      password
+    await setDoc(doc(db, "users", user.uid), {
+      name,
+      email
     });
 
-    res.status(201).json({
-      _id: user._id,
-      username: user.username,
-      token: generateToken(user._id)
-    });
+    res.status(201).json({ message: "User registered successfully", uid: user.uid });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 };
 
-export const login = async (req, res) => {
+export const loginUser = async (req, res) => {
   const { email, password } = req.body;
-
   try {
-    const user = await User.findOne({ email });
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
 
-    if (user && (await user.matchPassword(password))) {
-      res.json({
-        _id: user._id,
-        username: user.username,
-        token: generateToken(user._id)
-      });
-    } else {
-      res.status(401).json({ message: "Invalid email or password" });
-    }
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    res.status(200).json({ uid: user.uid, data: userDoc.data() });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 };
