@@ -13,17 +13,23 @@
     justify-content: space-between;
     align-items: center;
     background-color: #89f1f1;
-    padding: 20px 50px;
+    padding: 20px 10px;
     height: 187px;
+    border: none;
+    border-radius: 8px;
+    margin: 0%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease; 
   }
   
   .logo-container {
     display: flex;
     align-items: center;
+    margin-left: -10px;
   }
   
   .logo {
-    height: 80px;
+    height: 230px;
     margin-right: 10px;
   }
   
@@ -38,9 +44,29 @@
     text-decoration: none;
     color: black;
     font-weight: 600;
+    margin-right: 80px;
   }
   
   .navbar a:hover {
     text-decoration: underline;
+  }
+  .header:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  }
+  .login-btn {
+    background-color: #0077b6;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .login-btn:hover {
+    background-color: #005f8f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
   
