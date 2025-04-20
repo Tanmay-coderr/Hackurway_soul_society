@@ -1,125 +1,184 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  body {
-    background-color: #f4f6f9;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh
-  }
-  .main{
-    flex-grow: 1;
-  }
-  
-  .dashboard-header {
-    background-color: #00cec9;
-    height: 150px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-  }
-  
-  .logout-btn {
-    background-color: #0077b6;
-    border: none;
-    padding: 15px 16px;
-    color: white;
-    font-weight: bold;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  .dashboard-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .card {
-    background-color: white;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    width: 45%;
-    min-width: 300px;
-  }
-  
-  .card h2 {
-    color: #00b894;
-    margin-bottom: 20px;
-  }
-  
-  .appointment-list,
-  .medicine-list {
-    list-style-type: none;
-    margin-bottom: 20px;
-  }
-  
-  .btn {
-    background-color: #00cec9;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .btn:hover {
-    background-color: #00b4b0;
-  }
-  .footer {
-    margin-bottom: 0px;
-    background-color: #2c3e50;
-    color: #fff;
-    padding: 20px 0px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f6f9;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.nav-bar a {
+  margin: 0 20px;
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  margin-right: 80px;
+}
+
+.nav-bar a:hover {
+  text-decoration: underline;
+}
+
+.dashboard-header {
+  background-color: #00cec9;
+  height: 150px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn {
+  background-color: #0077b6;
+  border: none;
+  padding: 15px 16px;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #005f8d;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 45%;
+  min-width: 300px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card h2 {
+  color: #00b894;
+  margin-bottom: 20px;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.appointment-list,
+.medicine-list {
+  list-style-type: none;
+  margin-bottom: 20px;
+  padding: 0;
+  font-size: 1em;
+}
+
+.appointment-list li,
+.medicine-list li {
+  background-color: #f9fafb;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-list li:hover,
+.medicine-list li:hover {
+  background-color: #e2f3f2;
+  cursor: pointer;
+}
+
+.add-appointment, .add-medicine {
+  margin-top: 20px;
+}
+
+.add-appointment input,
+.add-medicine input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: calc(100% - 20px);
+  margin-bottom: 10px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.add-appointment button,
+.add-medicine button {
+  background-color: #00cec9;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.1em;
+  transition: background-color 0.3s;
+}
+
+.add-appointment button:hover,
+.add-medicine button:hover {
+  background-color: #00b4b0;
+}
+
+.footer {
   margin-top: auto;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 30vh;
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
 }
 
 .footer-content {
-    max-width: 1200px;
-    margin: auto;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .footer h2 {
-    font-size: 30px;
-    margin-bottom: 20px;
-    color: #00cec9;
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #00cec9;
 }
 
 .footer p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 .social-icons a {
-    color: #fff;
-    margin: 0 15px;
-    font-size: 20px;
-    transition: transform 0.3s ease, color 0.3s ease;
+  color: #fff;
+  margin: 0 15px;
+  font-size: 20px;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .social-icons a:hover {
-    transform: scale(1.1);
-    color: #00cec9;
+  transform: scale(1.1);
+  color: #00cec9;
 }
 
 .footer p:last-child {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #f9fafb;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #f9fafb;
 }

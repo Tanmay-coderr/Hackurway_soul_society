@@ -12,28 +12,45 @@
 <body>
   <header class="dashboard-header">
     <h1>Welcome, Tanmay </h1>
-    
-    <button class="logout-btn">Logout</button>
+    <div class="nav-bar">
+      <a href="index.html">HOME</a>
+      <a href="about_us.html">ABOUT US</a>
+      <a href="contact_us.html">CONTACT US</a>
+      <a href="#">PROFILE</a> 
+
+      <a href="index.html">
+
+        <button class="logout-btn">Logout</button>
+      </a>
+    </div>
   </header>
 
   <main class="dashboard-container">
     <section class="card">
-      <h2>Upcoming Appointments</h2>
-      <ul class="appointment-list">
-        <li>No appointments scheduled yet.</li>
-      </ul>
-      <button class="btn">Add Appointment</button>
+        <h2>Upcoming Appointments</h2>
+        <ul class="appointment-list" id="appointment-list">
+            <!-- Appointments will be dynamically added here -->
+        </ul>
+        <div class="add-appointment">
+            <input type="text" id="appointment-name" placeholder="Enter appointment name" />
+            <input type="datetime-local" id="appointment-date" />
+            <button class="btn" onclick="addAppointment()">Add Appointment</button>
+        </div>
     </section>
 
     <section class="card">
-      <h2>Medicine Schedule</h2>
-      <ul class="medicine-list">
-        <li>No medicines added.</li>
-      </ul>
-      <button class="btn">Add Medicine</button>
+        <h2>Medicine Schedule</h2>
+        <ul class="medicine-list" id="medicine-list">
+            <!-- Medicines will be dynamically added here -->
+        </ul>
+        <div class="add-medicine">
+            <input type="text" id="medicine-name" placeholder="Enter medicine name" />
+            <input type="datetime-local" id="medicine-time" />
+            <button class="btn" onclick="addMedicine()">Add Medicine</button>
+        </div>
     </section>
-    
-  </main>
+</main>
+
   <footer class="footer">
     <div class="footer-content">
         <h2>MedAid</h2>
@@ -48,4 +65,84 @@
     </div>
 </footer>
 </body>
+<script>
+  // Sample hardcoded data for appointments and medicine schedule
+  const appointments = [
+      { name: "Dentist Appointment", date: "2025-04-25T10:00" },
+      { name: "Eye Check-up", date: "2025-04-26T14:00" },
+      { name: "Ear Check-up", date: "2025-04-26T16:00" }
+  ];
+
+  const medicines = [
+      { name: "Paracetamol", time: "2025-04-25T08:00" },
+      { name: "Vitamin D", time: "2025-04-25T12:00" },
+      { name: "Vitamin C", time: "2025-04-25T14:00" }
+  ];
+
+  // Function to add an appointment
+  function addAppointment() {
+      const name = document.getElementById("appointment-name").value;
+      const date = document.getElementById("appointment-date").value;
+
+      if (name && date) {
+          appointments.push({ name, date });
+          displayAppointments();
+          clearInputs("appointment-name", "appointment-date");
+      } else {
+          alert("Please fill in both fields!");
+      }
+  }
+
+  // Function to add a medicine schedule
+  function addMedicine() {
+      const name = document.getElementById("medicine-name").value;
+      const time = document.getElementById("medicine-time").value;
+
+      if (name && time) {
+          medicines.push({ name, time });
+          displayMedicines();
+          clearInputs("medicine-name", "medicine-time");
+      } else {
+          alert("Please fill in both fields!");
+      }
+  }
+
+  // Function to display appointments dynamically
+  function displayAppointments() {
+      const appointmentList = document.getElementById("appointment-list");
+      appointmentList.innerHTML = "";  // Clear previous list
+
+      appointments.forEach((appointment) => {
+          const li = document.createElement("li");
+          li.textContent = `${appointment.name} - ${new Date(appointment.date).toLocaleString()}`;
+          appointmentList.appendChild(li);
+      });
+  }
+
+  // Function to display medicine schedule dynamically
+  function displayMedicines() {
+      const medicineList = document.getElementById("medicine-list");
+      medicineList.innerHTML = "";  // Clear previous list
+
+      medicines.forEach((medicine) => {
+          const li = document.createElement("li");
+          li.textContent = `${medicine.name} - ${new Date(medicine.time).toLocaleString()}`;
+          medicineList.appendChild(li);
+      });
+  }
+
+  // Function to clear input fields after submission
+  function clearInputs(...inputIds) {
+      inputIds.forEach((id) => {
+          document.getElementById(id).value = "";
+      });
+  }
+
+  // Display existing data when page loads
+  window.onload = function() {
+      displayAppointments();
+      displayMedicines();
+  };
+</script>
+
 </html>
